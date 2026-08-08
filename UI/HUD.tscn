@@ -35,8 +35,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_yixhe")
 theme_override_font_sizes/font_size = 32
-text = "
-        Score: 67"
+text = "Score: 67"
 
 [node name="HP bar" type="Node" parent="Control/MarginContainer/HBoxContainer" unique_id=1641799055]
 
