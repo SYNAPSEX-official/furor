@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://d2yg5y3qpwtf6"]
+
+[ext_resource type="Script" uid="uid://b6se353wyxpkr" path="res://Scripts/gender.gd" id="1_fdpnb"]
+[ext_resource type="FontFile" uid="uid://bo02brbsqmqrl" path="res://Assests/Fonts/pixel-game/Pixel Game.otf" id="2_gixoh"]
+
+[node name="Control" type="Control" unique_id=1684220710]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_fdpnb")
+
+[node name="Panel" type="Panel" parent="." unique_id=502734814]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=849105878]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -9.5
+offset_right = -3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=373241132]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("2_gixoh")
+theme_override_font_sizes/font_size = 96
+text = "Skin type"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=475695381]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="dark" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1496468264]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_gixoh")
+theme_override_font_sizes/font_size = 32
+text = "Dark"
+
+[node name="tan" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=145134870]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_gixoh")
+theme_override_font_sizes/font_size = 32
+text = "Tan"
+
+[node name="neutral" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1646480724]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_gixoh")
+theme_override_font_sizes/font_size = 32
+text = "Neutral"
+
+[node name="light" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1678997714]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_gixoh")
+theme_override_font_sizes/font_size = 32
+text = "light"
+
+[node name="pale" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=991225674]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_gixoh")
+theme_override_font_sizes/font_size = 32
+text = "pale"
+
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/dark" to="." method="_on_dark_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/tan" to="." method="_on_tan_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/neutral" to="." method="_on_neutral_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/light" to="." method="_on_light_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/pale" to="." method="_on_pale_pressed"]

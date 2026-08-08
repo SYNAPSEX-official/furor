@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bg4yncln3625j"]
+
+[ext_resource type="Script" uid="uid://cgnh7ay1lp80t" path="res://Scripts/main_ui.gd" id="1_brlpf"]
+[ext_resource type="FontFile" uid="uid://cx87y0ndrtr6e" path="res://Assests/Fonts/pixelwarden/PixelWarden.ttf" id="1_cqqg5"]
+[ext_resource type="FontFile" uid="uid://bo02brbsqmqrl" path="res://Assests/Fonts/pixel-game/Pixel Game.otf" id="2_brlpf"]
+
+[node name="Main" type="Control" unique_id=1506955985]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_brlpf")
+
+[node name="Panel" type="Panel" parent="." unique_id=1999945965]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=32139170]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -597.0
+offset_top = 156.0
+offset_right = 651.0
+offset_bottom = 331.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_cqqg5")
+theme_override_font_sizes/font_size = 128
+text = "Furor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel" unique_id=1661722439]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 406.0
+offset_right = 632.0
+offset_bottom = 480.0
+theme_override_fonts/font = ExtResource("2_brlpf")
+theme_override_font_sizes/font_size = 64
+text = "START"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
