@@ -5,10 +5,19 @@ extends CharacterBody2D
 ######################
 
 @onready var canvas_layer: CanvasLayer = $"../Camera2D/CanvasLayer"
-@onready var health_bar: TextureProgressBar = canvas_layer.get_node("Control/MarginContainer/HBoxContainer/HP bar/BlueBar")
+
+@onready var health_bar: TextureProgressBar = canvas_layer.get_node(
+	"Control/MarginContainer/HBoxContainer/HP bar/BlueBar"
+)
+
+@onready var points: Label = canvas_layer.get_node(
+	"Control/MarginContainer/HBoxContainer/Label"
+)
+
 @onready var camera: Camera2D = $"../Camera2D"
 
 @onready var skin: AnimatedSprite2D = $skin
+@onready var hair: AnimatedSprite2D = $hair
 @onready var bottom: AnimatedSprite2D = $bottom_clothe
 @onready var top: AnimatedSprite2D = $top_clothe
 
@@ -27,12 +36,12 @@ var coyote_timer: float = 0.0
 var jump_buffer_time: float = 0.1
 var jump_buffer_timer: float = 0.0
 
-# Player customization
 var gender = Global.gender
+# Player customization
 var skin_type = Global.skin
 var top_clothe: String = "blue_shirt_2"
 var bottom_clothe: String = "green_pants"
-var hair_style
+var hair_style = "1"
 var socks
 var shoes
 
@@ -111,9 +120,11 @@ func _ready() -> void:
 ###############################
 
 func _physics_process(delta: float) -> void:
+	points.text = "Score: " + str(Global.rage)
 	if dying:
 		return
-
+	
+	
 	# Clothing system
 	top_cloth_timer = max(top_cloth_timer - delta, 0.0)
 	bottom_clothe_timer = max(bottom_clothe_timer - delta, 0.0)
@@ -177,10 +188,12 @@ func _physics_process(delta: float) -> void:
 			skin.flip_h = true
 			top.flip_h = true
 			bottom.flip_h = true
+			hair.flip_h = true
 		else:
 			skin.flip_h = false
 			top.flip_h = false
 			bottom.flip_h = false
+			hair.flip_h = false
 
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, SPEED)
@@ -205,20 +218,24 @@ func _physics_process(delta: float) -> void:
 			skin.play(skin_anim("jump"))
 			top.play(top_anim("jump"))
 			bottom.play(bottom_anim("jump"))
+			hair.play(hair_anim("jump"))
 		else:
 			skin.play(skin_anim("fall"))
 			top.play(top_anim("fall"))
 			bottom.play(bottom_anim("fall"))
+			hair.play(hair_anim("fall"))
 
 	elif direction != 0.0:
 		skin.play(skin_anim("run"))
 		top.play(top_anim("run"))
 		bottom.play(bottom_anim("run"))
+		hair.play(hair_anim("run"))
 
 	else:
 		skin.play(skin_anim("idle"))
 		top.play(top_anim("idle"))
 		bottom.play(bottom_anim("idle"))
+		hair.play(hair_anim("idle"))
 
 
 	# Camera shake update
@@ -369,3 +386,6 @@ func top_anim(action: String) -> String:
 
 func bottom_anim(action: String) -> String:
 	return bottom_clothe + "_" + action
+
+func hair_anim(action: String) -> String:
+	return gender + "_" + hair_style + "_" + action
