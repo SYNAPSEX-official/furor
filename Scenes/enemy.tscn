@@ -92,6 +92,9 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_sbxph"]
 radius = 38.004734
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_287tu"]
+radius = 14.205631
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1060650513]
 scale = Vector2(5, 5)
 script = ExtResource("1_287tu")
@@ -100,7 +103,7 @@ script = ExtResource("1_287tu")
 sprite_frames = SubResource("SpriteFrames_gjqsh")
 animation = &"green"
 autoplay = "green"
-frame_progress = 0.2621396
+frame_progress = 0.9615354
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=873019461]
 shape = SubResource("CircleShape2D_xaga7")
@@ -113,5 +116,6 @@ shape = SubResource("CircleShape2D_sbxph")
 [node name="damage area" type="Area2D" parent="." unique_id=1286348052]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage area" unique_id=869145773]
+shape = SubResource("CircleShape2D_287tu")
 
 [connection signal="body_entered" from="damage area" to="." method="_on_damage_area_body_entered"]

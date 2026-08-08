@@ -1971,7 +1971,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"female_1_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2141,7 +2141,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"female_2_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2311,7 +2311,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"female_3_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2481,7 +2481,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"female_4_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2651,7 +2651,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"female_5_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2991,7 +2991,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"male_2_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -3161,7 +3161,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"male_3_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -3331,7 +3331,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"male_4_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -3501,7 +3501,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"male_5_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -4574,7 +4574,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"blue_pants_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -4775,6 +4775,11 @@ animations = [{
 "name": &"green_pants_walk",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": 1,
+"name": &"none",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k5fn1")
@@ -4914,7 +4919,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"orange_pants_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -5084,7 +5089,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"purple_pants_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -5254,7 +5259,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"skirt_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -6867,7 +6872,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"blue_corset_2_run",
-"speed": 3.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -7207,7 +7212,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"green_corset_2_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -7377,7 +7382,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"green_shirt_2_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -7406,6 +7411,11 @@ animations = [{
 }],
 "loop": 1,
 "name": &"green_shirt_2_walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"none",
 "speed": 5.0
 }, {
 "frames": [{
@@ -7547,7 +7557,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"orange_corset_2_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -7717,7 +7727,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"orange_shirt_2_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -7887,7 +7897,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"purple_corset_2_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -8057,7 +8067,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"purple_shirt_2_run",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -8113,27 +8123,24 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 position = Vector2(-1.9999971, -25)
 scale = Vector2(2, 2.217)
 sprite_frames = SubResource("SpriteFrames_urrpd")
-animation = &"female_5_die"
+animation = &"female_4_run"
 autoplay = "male_1_idle"
 
 [node name="bottom_clothe" type="AnimatedSprite2D" parent="." unique_id=1613336274]
 position = Vector2(-1.5, -29.000004)
 scale = Vector2(2, 2.413)
 sprite_frames = SubResource("SpriteFrames_bdi1b")
-animation = &"skirt_die"
+animation = &"none"
 autoplay = "green_pants_idle"
 
 [node name="top_clothe" type="AnimatedSprite2D" parent="." unique_id=707608341]
 position = Vector2(-2, -25)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1wi4f")
-animation = &"purple_shirt_2_die"
+animation = &"none"
 autoplay = "blue_shirt_2_idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1975939824]
-position = Vector2(-6, -2.5)
+position = Vector2(-1.5, 1)
 shape = SubResource("CapsuleShape2D_sbxph")
-
-[node name="MaleSkin4" type="Sprite2D" parent="." unique_id=1690320223]
-position = Vector2(7.5, -155.5)
-texture = ExtResource("12_36dho")
+debug_color = Color(0, 0.6, 0.69803923, 0)

@@ -1,8 +1,18 @@
 extends CharacterBody2D
 
+######################
+# NODES #############
+######################
+
+@onready var canvas_layer: CanvasLayer = $"../Camera2D/CanvasLayer"
+@onready var health_bar: TextureProgressBar = canvas_layer.get_node("Control/MarginContainer/HBoxContainer/HP bar/BlueBar")
 @onready var skin: AnimatedSprite2D = $skin
 @onready var bottom: AnimatedSprite2D = $bottom_clothe
 @onready var top: AnimatedSprite2D = $top_clothe
+
+##########################
+# VARIABLES ##############
+##########################
 
 const SPEED = 500.0
 const JUMP_VELOCITY = -700.0
@@ -25,10 +35,50 @@ var socks
 var shoes
 
 #Health system
-var health := Global.health
-var attack := Global.attack
+var health = Global.health
+var attack = Global.attack
 
+# Clothing system
+var top_cloth_time := 20.0
+var top_cloth_timer := 0.0
+var bottom_clothe_time := 20.0
+var bottom_clothe_timer := 0.0
+var top_damage_multi = false
+var bottom_damage_multi = false
+
+###############################
+# CODE #######################
+##############################
+
+func _ready() -> void:
+	top_cloth_timer = top_cloth_time
+	bottom_clothe_timer = bottom_clothe_time
+	
 func _physics_process(delta: float) -> void:
+	#Clothing system
+	top_cloth_timer = max(top_cloth_timer - delta, 0.0)
+	bottom_clothe_timer = max(bottom_clothe_timer - delta, 0.0)
+	
+	print(bottom_clothe_timer)
+	if top_cloth_timer <= 0 and bottom_damage_multi == false:
+		Global.damage_multiplier = 2.5
+	elif bottom_clothe_timer <= 0 and bottom_damage_multi == false:
+		Global.damage_multiplier = 2.5
+	elif bottom_clothe_timer > 0:
+		Global.damage_multiplier = 1.0
+	elif top_cloth_timer > 0:
+		Global.damage_multiplier = 1.0
+	
+	# Health stufff
+	health = Global.health
+	health_bar.value = health * 5
+	if health <= 0 and Global.is_alive == true:
+		Global.is_alive = false
+		skin.play(skin_anim("die"))
+		top.play(top_anim("die"))
+		bottom.play(bottom_anim("die"))
+		await get_tree().create_timer(1.8).timeout
+		
 	# Coyote time
 	if is_on_floor():
 		coyote_timer = coyote_time
@@ -53,7 +103,7 @@ func _physics_process(delta: float) -> void:
 	# Horizontal movement
 	var direction := Input.get_axis("left", "right")
 
-	if direction:
+	if direction :
 		velocity.x = direction * SPEED
 
 		# Face direction
@@ -92,7 +142,6 @@ func _physics_process(delta: float) -> void:
 		skin.play(skin_anim("idle"))
 		top.play(top_anim("idle"))
 		bottom.play(bottom_anim("idle"))
-
 
 func skin_anim(action: String) -> String:
 	return gender + "_" + str(skin_type) + "_" + action

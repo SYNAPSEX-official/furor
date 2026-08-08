@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c15rie08f17w2"]
+
+[ext_resource type="FontFile" uid="uid://bo02brbsqmqrl" path="res://Assests/Fonts/pixel-game/Pixel Game.otf" id="1_yixhe"]
+[ext_resource type="Texture2D" uid="uid://db8wtwo0dl1el" path="res://Assests/GandalfHardcore Hp bar/red bar.png" id="2_4n7mi"]
+[ext_resource type="Texture2D" uid="uid://va5huiugkmuh" path="res://Assests/GandalfHardcore Hp bar/Hp bar.png" id="2_ijstf"]
+[ext_resource type="Texture2D" uid="uid://mmrk0yosu0mu" path="res://Assests/GandalfHardcore Hp bar/Blue bar.png" id="4_f2wx0"]
+[ext_resource type="Texture2D" uid="uid://btkjx346xbdl1" path="res://Assests/GandalfHardcore Hp bar/yellow bar.png" id="5_gppie"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=788927996]
+
+[node name="Control" type="Control" parent="." unique_id=192368237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=348232619]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer" unique_id=561798319]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer" unique_id=1405405698]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_yixhe")
+theme_override_font_sizes/font_size = 32
+text = "
+        Score: 67"
+
+[node name="HP bar" type="Node" parent="Control/MarginContainer/HBoxContainer" unique_id=1641799055]
+
+[node name="RedBar" type="Sprite2D" parent="Control/MarginContainer/HBoxContainer/HP bar" unique_id=390640618]
+position = Vector2(94.5, 562)
+scale = Vector2(2, 2.158)
+texture = ExtResource("2_4n7mi")
+
+[node name="BlueBar" type="TextureProgressBar" parent="Control/MarginContainer/HBoxContainer/HP bar" unique_id=1757977267]
+offset_left = 155.0
+offset_top = 604.0
+offset_right = 204.0
+offset_bottom = 610.0
+scale = Vector2(2.1020408, 2.833325)
+texture_progress = ExtResource("4_f2wx0")
+
+[node name="YellowBar" type="TextureProgressBar" parent="Control/MarginContainer/HBoxContainer/HP bar" unique_id=1819024762]
+offset_left = 161.99998
+offset_top = 590.0
+offset_right = 194.7328
+offset_bottom = 594.0
+scale = Vector2(2.046875, 3.000002)
+texture_over = ExtResource("5_gppie")
+
+[node name="HpBar" type="Sprite2D" parent="Control/MarginContainer/HBoxContainer/HP bar" unique_id=302376354]
+position = Vector2(148, 562.00006)
+scale = Vector2(2, 1.973)
+texture = ExtResource("2_ijstf")
