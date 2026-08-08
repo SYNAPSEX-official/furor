@@ -1886,7 +1886,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5xxh7")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"female_1_die",
 "speed": 5.0
 }, {
@@ -2056,7 +2056,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jin74")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"female_2_die",
 "speed": 5.0
 }, {
@@ -2226,7 +2226,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fm1ks")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"female_3_die",
 "speed": 5.0
 }, {
@@ -2396,7 +2396,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h4ank")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"female_4_die",
 "speed": 5.0
 }, {
@@ -2566,7 +2566,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yjsnx")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"female_5_die",
 "speed": 5.0
 }, {
@@ -2736,7 +2736,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4tc2f")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"male_1_die",
 "speed": 5.0
 }, {
@@ -2906,7 +2906,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8d2r5")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"male_2_die",
 "speed": 5.0
 }, {
@@ -3076,7 +3076,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3lo35")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"male_3_die",
 "speed": 5.0
 }, {
@@ -3246,7 +3246,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8r062")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"male_4_die",
 "speed": 5.0
 }, {
@@ -3416,7 +3416,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oudxg")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"male_5_die",
 "speed": 5.0
 }, {
@@ -4489,7 +4489,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lkwnb")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"blue_pants_die",
 "speed": 5.0
 }, {
@@ -4659,7 +4659,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sscpr")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"green_pants_die",
 "speed": 5.0
 }, {
@@ -4834,7 +4834,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fus4s")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"orange_pants_die",
 "speed": 5.0
 }, {
@@ -5004,7 +5004,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_40kby")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"purple_pants_die",
 "speed": 5.0
 }, {
@@ -5174,7 +5174,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_av0dr")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"skirt_die",
 "speed": 5.0
 }, {
@@ -6787,7 +6787,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ijsl")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"blue_corset_2_die",
 "speed": 5.0
 }, {
@@ -6957,7 +6957,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kfwar")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"blue_shirt_2_die",
 "speed": 5.0
 }, {
@@ -7127,7 +7127,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mol7s")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"green_corset_2_die",
 "speed": 5.0
 }, {
@@ -7297,7 +7297,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hi2l3")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"green_shirt_2_die",
 "speed": 5.0
 }, {
@@ -7472,7 +7472,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ltv6v")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"orange_corset_2_die",
 "speed": 5.0
 }, {
@@ -7642,7 +7642,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i5w8x")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"orange_shirt_2_die",
 "speed": 5.0
 }, {
@@ -7812,7 +7812,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wdsrd")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"purple_corset_2_die",
 "speed": 5.0
 }, {
@@ -7982,7 +7982,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_grwg2")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"purple_shirt_2_die",
 "speed": 5.0
 }, {
@@ -8115,6 +8115,7 @@ follow_target = NodePath("..")
 snap_to_pixel = true
 tween_resource = SubResource("Resource_x3wgy")
 follow_damping = true
+follow_damping_value = Vector2(0.5, 0.5)
 dead_zone_width = 0.25
 dead_zone_height = 0.25
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
@@ -8123,22 +8124,21 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 position = Vector2(-1.9999971, -25)
 scale = Vector2(2, 2.217)
 sprite_frames = SubResource("SpriteFrames_urrpd")
-animation = &"female_4_run"
+animation = &"male_5_die"
 autoplay = "male_1_idle"
 
 [node name="bottom_clothe" type="AnimatedSprite2D" parent="." unique_id=1613336274]
 position = Vector2(-1.5, -29.000004)
 scale = Vector2(2, 2.413)
 sprite_frames = SubResource("SpriteFrames_bdi1b")
-animation = &"none"
+animation = &"skirt_die"
 autoplay = "green_pants_idle"
 
 [node name="top_clothe" type="AnimatedSprite2D" parent="." unique_id=707608341]
 position = Vector2(-2, -25)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1wi4f")
-animation = &"none"
-autoplay = "blue_shirt_2_idle"
+animation = &"green_shirt_2_die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1975939824]
 position = Vector2(-1.5, 1)
