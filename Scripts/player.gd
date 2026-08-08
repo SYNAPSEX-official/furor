@@ -54,20 +54,21 @@ var bottom_damage_multi: bool = false
 # Death
 var dying: bool = false
 
+#Points
+var rage = Global.rage
+
 ##########################
 # JUICE VARIABLES
 ##########################
 
-var was_on_floor: bool = true          # tracks previous frame's floor state (for landing detection)
-var fall_start_y: float = 0.0          # y position where the fall began (for landing impact strength)
+var was_on_floor: bool = true
+var fall_start_y: float = 0.0
 var footstep_timer: float = 0.0
 const FOOTSTEP_INTERVAL: float = 0.18
 
 # Squash/stretch tweens (kept as refs so we can kill & restart cleanly)
 var squash_tween: Tween
 
-# Base scales of each sprite, captured in _ready so squash/stretch always
-# returns to the ORIGINAL scale instead of forcing Vector2.ONE
 var skin_base_scale: Vector2
 var top_base_scale: Vector2
 var bottom_base_scale: Vector2
