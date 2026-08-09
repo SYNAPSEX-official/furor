@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://boyfdb35mrp71"]
+[gd_scene load_steps=0 format=3 uid="uid://boyfdb35mrp71"]
 
 [ext_resource type="Script" uid="uid://cwvxcaf6va57k" path="res://Scripts/clothe_item_base.gd" id="1_7ru6o"]
 

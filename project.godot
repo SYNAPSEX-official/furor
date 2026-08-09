@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="level 0 august"
 run/main_scene="uid://bg4yncln3625j"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0.21176471, 0.25882354, 0.16470589, 1)
 boot_splash/image="uid://cd0ou3eotep2a"
 config/icon="uid://cd0ou3eotep2a"
