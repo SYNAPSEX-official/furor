@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://boyfdb35mrp71"]
+
+[ext_resource type="Script" uid="uid://cwvxcaf6va57k" path="res://Scripts/clothe_item_base.gd" id="1_7ru6o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbxph"]
+radius = 51.24451
+
+[node name="clothe" type="Area2D" unique_id=2112460708]
+script = ExtResource("1_7ru6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1212021459]
+shape = SubResource("CircleShape2D_sbxph")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

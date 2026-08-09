@@ -38,7 +38,7 @@ offset_bottom = 331.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_cqqg5")
 theme_override_font_sizes/font_size = 128
-text = "Furor"
+text = "FUROR"
 horizontal_alignment = 1
 vertical_alignment = 1
 
