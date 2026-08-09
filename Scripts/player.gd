@@ -17,12 +17,15 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $"../Camera2D"
 @onready var noise_emitter: PhantomCameraNoiseEmitter2D = $PhantomCamera2D/PhantomCameraNoiseEmitter2D
 
+@onready var attack_area: Area2D = $attack_area
+@onready var attack_collision: CollisionShape2D = $attack_area/CollisionShape2D
+var attack_damage: float = Global.attack
 
 @onready var skin: AnimatedSprite2D = $skin
 @onready var hair: AnimatedSprite2D = $hair
 @onready var bottom: AnimatedSprite2D = $bottom_clothe
 @onready var top: AnimatedSprite2D = $top_clothe
-
+@onready var sword: AnimatedSprite2D = $sword
 
 ######################
 # VARIABLES
@@ -36,17 +39,10 @@ const DECELERATION: float = 3500.0
 
 const AIR_ANIM_DEADZONE: float = 40.0
 
-# Terminal velocity - keeps long falls readable/controllable instead of
-# accelerating forever (also avoids tunneling through thin floors at
-# extreme speeds).
 const MAX_FALL_SPEED: float = 1400.0
 
-# Variable jump height - releasing "jump" early cuts the ascent short.
-# Tap = short hop, hold = full arc. Makes precision platforming forgiving.
 const JUMP_CUT_MULTIPLIER: float = 0.45
 
-# Brief reduced gravity right at the peak of a jump ("hang time"),
-# gives the player a little extra beat of control near the apex.
 const APEX_GRAVITY_MULTIPLIER: float = 0.55
 const APEX_VELOCITY_THRESHOLD: float = 120.0
 
@@ -122,8 +118,12 @@ const FREQUENCY_PER_INTENSITY: float = 10.0
 const MIN_SHAKE_AXIS_MULTIPLIER: float = 0.35
 var camera_base_offset: Vector2 = Vector2.ZERO
 
+var attacking: bool = false
 # HIT FLASH
 var flash_tween: Tween
+
+var hitstop_active_count: int = 0
+
 # READY
 
 func _ready() -> void:
@@ -165,13 +165,11 @@ func _ready() -> void:
 ######################
 
 func _physics_process(delta: float) -> void:
-
-	###############################
-	# STOP ALL LOGIC WHILE DYING
-	###############################
-
 	if dying:
 		return
+
+	if Input.is_action_just_pressed("attack") and not attacking:
+		attack_player()
 
 
 	###############################
@@ -220,6 +218,7 @@ func _physics_process(delta: float) -> void:
 		top.visible = blink_visible
 		bottom.visible = blink_visible
 		hair.visible = blink_visible
+		sword.visible = blink_visible  # FIX #5: sword now blinks too
 
 		if invulnerability_timer <= 0.0:
 			invulnerable = false
@@ -227,6 +226,7 @@ func _physics_process(delta: float) -> void:
 			top.visible = true
 			bottom.visible = true
 			hair.visible = true
+			sword.visible = true
 
 	# Detect damage — ignored while invulnerable, see note above.
 	if health < previous_health and not invulnerable:
@@ -245,6 +245,8 @@ func _physics_process(delta: float) -> void:
 	###############################
 	# COYOTE TIME + GRAVITY
 	###############################
+	# Runs even while attacking now, so an air-attack still falls/lands
+	# normally instead of hanging frozen in place (FIX #1).
 
 	if is_on_floor():
 		coyote_timer = coyote_time
@@ -275,15 +277,17 @@ func _physics_process(delta: float) -> void:
 			0.0
 		)
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and not attacking:
 		jump_buffer_timer = jump_buffer_time
 
 
 	###############################
 	# JUMP
 	###############################
+	# Suppressed while attacking - you shouldn't be able to jump-cancel
+	# out of an attack mid-swing.
 
-	if coyote_timer > 0.0 and jump_buffer_timer > 0.0:
+	if not attacking and coyote_timer > 0.0 and jump_buffer_timer > 0.0:
 		velocity.y = JUMP_VELOCITY
 
 		jump_buffer_timer = 0.0
@@ -307,10 +311,13 @@ func _physics_process(delta: float) -> void:
 	# HORIZONTAL MOVEMENT
 	###############################
 
-	var direction: float = Input.get_axis(
-		"left",
-		"right"
-	)
+	var direction: float = 0.0
+
+	if not attacking:
+		direction = Input.get_axis(
+			"left",
+			"right"
+		)
 
 	if direction != 0.0:
 
@@ -326,12 +333,14 @@ func _physics_process(delta: float) -> void:
 			top.flip_h = true
 			bottom.flip_h = true
 			hair.flip_h = true
+			sword.flip_h = true
 
 		else:
 			skin.flip_h = false
 			top.flip_h = false
 			bottom.flip_h = false
 			hair.flip_h = false
+			sword.flip_h = false
 
 	else:
 
@@ -393,8 +402,14 @@ func _physics_process(delta: float) -> void:
 	###############################
 	# PLAYER ANIMATIONS
 	###############################
+	# Skipped entirely while attacking so the attack animation (started
+	# in attack_player()) doesn't get stomped every frame by idle/run/
+	# jump/fall (FIX #1 continued).
 
-	if not is_on_floor():
+	if attacking:
+		pass
+
+	elif not is_on_floor():
 
 		var play_jump: bool
 
@@ -420,6 +435,7 @@ func _physics_process(delta: float) -> void:
 			top.play(top_anim("jump"))
 			bottom.play(bottom_anim("jump"))
 			hair.play(hair_anim("jump"))
+			sword.play(sword_anim("jump"))
 
 		else:
 
@@ -427,6 +443,7 @@ func _physics_process(delta: float) -> void:
 			top.play(top_anim("fall"))
 			bottom.play(bottom_anim("fall"))
 			hair.play(hair_anim("fall"))
+			sword.play(sword_anim("fall"))
 
 
 	elif direction != 0.0:
@@ -440,7 +457,7 @@ func _physics_process(delta: float) -> void:
 		top.play(top_anim("run"))
 		bottom.play(bottom_anim("run"))
 		hair.play(hair_anim("run"))
-
+		sword.play(sword_anim("run"))
 
 	else:
 
@@ -453,7 +470,7 @@ func _physics_process(delta: float) -> void:
 		top.play(top_anim("idle"))
 		bottom.play(bottom_anim("idle"))
 		hair.play(hair_anim("idle"))
-
+		sword.play(sword_anim("idle"))
 
 ###############################
 # SQUASH & STRETCH
@@ -673,7 +690,10 @@ func on_damaged() -> void:
 ###############################
 
 func hitstop(duration: float) -> void:
-
+	# FIX #4: track overlapping hitstop requests with a counter so a
+	# second hit landing during the first one's freeze doesn't get its
+	# time_scale reset stolen early by the first coroutine finishing.
+	hitstop_active_count += 1
 	Engine.time_scale = 0.05
 
 	await get_tree().create_timer(
@@ -683,7 +703,9 @@ func hitstop(duration: float) -> void:
 		true
 	).timeout
 
-	if not dying:
+	hitstop_active_count = max(hitstop_active_count - 1, 0)
+
+	if hitstop_active_count == 0 and not dying:
 		Engine.time_scale = 1.0
 
 
@@ -703,6 +725,7 @@ func die() -> void:
 	shake(1.0)
 
 	# Restore normal time scale
+	hitstop_active_count = 0
 	Engine.time_scale = 1.0
 
 	# Stop player movement
@@ -717,11 +740,22 @@ func die() -> void:
 	bottom.process_mode = Node.PROCESS_MODE_ALWAYS
 	hair.process_mode = Node.PROCESS_MODE_ALWAYS
 
+	# Make sure death isn't hidden by a leftover invulnerability blink
+	# or a frozen attack hitbox (FIX #3 follow-through).
+	skin.visible = true
+	top.visible = true
+	bottom.visible = true
+	hair.visible = true
+	sword.visible = true
+	attacking = false
+	attack_collision.set_deferred("disabled", true)
+
 	# Play death animations
 	skin.play(skin_anim("die"))
 	top.play(top_anim("die"))
 	bottom.play(bottom_anim("die"))
 	hair.play(hair_anim("die"))
+	sword.play(sword_anim("die"))
 
 	# Pause everything else
 	get_tree().paused = true
@@ -760,6 +794,8 @@ func bottom_anim(action: String) -> String:
 func hair_anim(action: String) -> String:
 	return gender + "_" + hair_style + "_" + action
 
+func sword_anim(action: String) -> String:
+	return gender + "_" + action
 
 ###############################
 # NEXT LEVEL AREA
@@ -777,10 +813,53 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 ###############################
 
 func _on_death_area_body_entered(body: Node2D) -> void:
-	print("Death area detected: ", body.name)
 	if body.name != "Player":
 		return
 	if dying:
 		return
-	print("PLAYER ENTERED DEATH AREA")
 	call_deferred("die")
+
+func attack_player() -> void:
+	if attacking or dying:
+		return
+
+	attacking = true
+	velocity.x = 0.0
+
+	# Play attack animation
+	skin.play(skin_anim("attack"))
+	top.play(top_anim("attack"))
+	bottom.play(bottom_anim("attack"))
+	hair.play(hair_anim("attack"))
+	sword.play(sword_anim("attack"))
+
+	await get_tree().create_timer(0.1).timeout
+	if dying:
+		return
+
+	# Enable hitbox
+	attack_collision.set_deferred("disabled", false)
+
+	# Hitbox stays active briefly
+	await get_tree().create_timer(0.15).timeout
+	if dying:
+		attack_collision.set_deferred("disabled", true)
+		attacking = false
+		return
+
+	# Disable hitbox safely
+	attack_collision.set_deferred("disabled", true)
+
+	# Prevent instant spam
+	await get_tree().create_timer(0.2).timeout
+	if dying:
+		attacking = false
+		return
+
+	attacking = false
+	print("Attack finished")
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body.name.begins_with("enemy") and attacking == true:
+		body.take_damage(attack_damage)
+		print(attack_damage)

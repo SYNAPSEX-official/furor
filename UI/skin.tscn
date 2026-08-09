@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b6se353wyxpkr" path="res://Scripts/gender.gd" id="1_fdpnb"]
 [ext_resource type="FontFile" uid="uid://bo02brbsqmqrl" path="res://Assests/Fonts/pixel-game/Pixel Game.otf" id="2_gixoh"]
+[ext_resource type="Texture2D" uid="uid://cj8u6n4i8qi7a" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 5.png" id="3_ev53s"]
+[ext_resource type="Texture2D" uid="uid://cl5mxexvm25om" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 4.png" id="4_gv7e6"]
+[ext_resource type="Texture2D" uid="uid://youq88l7xtwg" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 3.png" id="5_pccrr"]
+[ext_resource type="Texture2D" uid="uid://b3v8vkld6ioih" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 2.png" id="6_dabtl"]
+[ext_resource type="Texture2D" uid="uid://d0pu5dksstilp" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 1.png" id="7_h2iws"]
 
 [node name="Control" type="Control" unique_id=1684220710]
 layout_mode = 3
@@ -83,6 +88,93 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_gixoh")
 theme_override_font_sizes/font_size = 32
 text = "pale"
+
+[node name="paralax backgrounds" type="Node" parent="Panel" unique_id=117648033]
+
+[node name="Parallax2D5" type="Parallax2D" parent="Panel/paralax backgrounds" unique_id=130562518]
+z_index = -1
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(-196, 305)
+repeat_size = Vector2(1024, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D5" unique_id=219588094]
+position = Vector2(-130, -17.249992)
+scale = Vector2(1.5, 1.3829478)
+texture = ExtResource("3_ev53s")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D5" unique_id=1723819303]
+position = Vector2(1406, -7.25)
+scale = Vector2(1.5, 1.4407512)
+texture = ExtResource("3_ev53s")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Panel/paralax backgrounds" unique_id=223767116]
+z_index = -1
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(1.3, 1.3)
+scroll_offset = Vector2(-424, 305)
+repeat_size = Vector2(1024, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D4" unique_id=267448998]
+position = Vector2(-130, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_gv7e6")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D4" unique_id=2098893179]
+position = Vector2(1406, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_gv7e6")
+
+[node name="Parallax2D" type="Parallax2D" parent="Panel/paralax backgrounds" unique_id=945523480]
+z_index = -1
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(1.5, 1.5)
+scroll_offset = Vector2(-424, 305)
+repeat_size = Vector2(1024, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D" unique_id=2091298008]
+position = Vector2(-130, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_pccrr")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D" unique_id=1814474781]
+position = Vector2(1406, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_pccrr")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Panel/paralax backgrounds" unique_id=1495350913]
+z_index = -1
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(1.8, 1.8)
+scroll_offset = Vector2(-424, 305)
+repeat_size = Vector2(1024, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D2" unique_id=735733777]
+position = Vector2(-130, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_dabtl")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D2" unique_id=1114169943]
+position = Vector2(1406, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_dabtl")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Panel/paralax backgrounds" unique_id=28421666]
+z_index = -1
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(2, 2)
+scroll_offset = Vector2(-424, 305)
+repeat_size = Vector2(1024, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D3" unique_id=257972139]
+position = Vector2(-130, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_h2iws")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="Panel/paralax backgrounds/Parallax2D3" unique_id=796817283]
+position = Vector2(1406, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_h2iws")
 
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/dark" to="." method="_on_dark_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/tan" to="." method="_on_tan_pressed"]
