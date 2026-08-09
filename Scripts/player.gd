@@ -62,7 +62,7 @@ var skin_type: String = str(Global.skin)
 var top_clothe: String = "blue_shirt_2"
 var bottom_clothe: String = "green_pants"
 
-var hair_style: String = str(randi_range(1, 5))
+var hair_style: String = "1"
 var socks: String = ""
 var shoes: String = ""
 
@@ -126,6 +126,10 @@ var hitstop_active_count: int = 0
 
 # READY
 func _ready() -> void:
+	if Global.gender == "female":
+		hair_style = str(randi_range(1, 5))
+	else:
+		hair_style = "1"
 	print("GENDER: ", Global.gender)
 	print("TOP: ", Global.top_cloth)
 	print("BOTTOM: ", Global.bottom_cloth)
@@ -430,12 +434,15 @@ func _physics_process(delta: float) -> void:
 		hair.speed_scale = 1.0
 
 		if play_jump:
+
 			skin.play(skin_anim("jump"))
 			top.play(top_anim("jump"))
 			bottom.play(bottom_anim("jump"))
 			hair.play(hair_anim("jump"))
 			sword.play(sword_anim("jump"))
+
 		else:
+
 			skin.play(skin_anim("fall"))
 			top.play(top_anim("fall"))
 			bottom.play(bottom_anim("fall"))

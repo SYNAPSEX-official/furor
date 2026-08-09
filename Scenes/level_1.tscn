@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=4 uid="uid://cdbggi43nfea8"]
+[gd_scene format=4 uid="uid://cdbggi43nfea8"]
 
 [ext_resource type="PackedScene" uid="uid://c1cqq3ki5tbsb" path="res://Scenes/player.tscn" id="1_5hph3"]
 [ext_resource type="Texture2D" uid="uid://dyad3p6wf88uj" path="res://icon.svg" id="2_j7kpp"]
@@ -1914,7 +1914,7 @@ size = Vector2(302, 30)
 normal = Vector2(-0.042514715, -0.99909586)
 distance = 60.358715
 
-[node name="Node2D" type="Node2D" unique_id=847684405]
+[node name="Node2D2" type="Node2D" unique_id=847684405]
 
 [node name="Player" parent="." unique_id=1863580171 instance=ExtResource("1_5hph3")]
 position = Vector2(-42, -7)
