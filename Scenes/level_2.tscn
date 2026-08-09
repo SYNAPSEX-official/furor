@@ -1,10 +1,15 @@
 [gd_scene load_steps=0 format=4 uid="uid://s37qhyojr2h"]
 
 [ext_resource type="PackedScene" uid="uid://sxmvkq3hxwby" path="res://level_template.tscn" id="1_v3rpw"]
+[ext_resource type="Script" uid="uid://cojd6q5i2bsc5" path="res://Scripts/level_2.gd" id="2_1q6tm"]
 [ext_resource type="PackedScene" uid="uid://d3egd2eenua6u" path="res://Scenes/falling_platform.tscn" id="2_smnlx"]
 [ext_resource type="PackedScene" uid="uid://dcljb1jltafl3" path="res://Scenes/enemy.tscn" id="3_12fag"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbxph"]
+size = Vector2(456.5, 49)
+
 [node name="Node2D" unique_id=847684405 instance=ExtResource("1_v3rpw")]
+script = ExtResource("2_1q6tm")
 
 [node name="Parallax2D5" parent="paralax backgrounds" parent_id_path=PackedInt32Array(463101970) index="0" unique_id=1071355532]
 scroll_offset = Vector2(-228, -568)
@@ -61,3 +66,10 @@ position = Vector2(4314, -33)
 
 [node name="falling_platform7" parent="falling_platform_collection" index="6" unique_id=1465269458 instance=ExtResource("2_smnlx")]
 position = Vector2(4604, -168)
+
+[node name="Area2D" type="Area2D" parent="." index="7" unique_id=2085698088]
+position = Vector2(97, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=1738354387]
+position = Vector2(5614.25, -552)
+shape = SubResource("RectangleShape2D_sbxph")

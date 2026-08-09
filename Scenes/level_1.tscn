@@ -1944,7 +1944,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="enemies" type="Node" parent="." unique_id=1182644189]
 
 [node name="enemy1" parent="enemies" unique_id=1021366978 instance=ExtResource("6_1pe0h")]
-position = Vector2(312, -17)
+position = Vector2(437, -150.00002)
 
 [node name="enemy2" parent="enemies" unique_id=727940827 instance=ExtResource("6_1pe0h")]
 position = Vector2(359, -668)
@@ -2055,6 +2055,8 @@ texture = ExtResource("11_oovug")
 position = Vector2(1426.0005, 3)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_oovug")
+
+[node name="clothe_items" type="Node" parent="." unique_id=1792441693]
 
 [connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="death area" to="Player" method="_on_death_area_body_entered"]

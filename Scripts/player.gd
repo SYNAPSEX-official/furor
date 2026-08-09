@@ -62,7 +62,7 @@ var skin_type: String = str(Global.skin)
 var top_clothe: String = "blue_shirt_2"
 var bottom_clothe: String = "green_pants"
 
-var hair_style: String = "1"
+var hair_style: String = str(randi_range(1, 5))
 var socks: String = ""
 var shoes: String = ""
 
@@ -125,8 +125,19 @@ var flash_tween: Tween
 var hitstop_active_count: int = 0
 
 # READY
-
 func _ready() -> void:
+	print("GENDER: ", Global.gender)
+	print("TOP: ", Global.top_cloth)
+	print("BOTTOM: ", Global.bottom_cloth)
+
+	gender = Global.gender
+	skin_type = str(Global.skin)
+	top_clothe = Global.top_cloth
+	bottom_clothe = Global.bottom_cloth
+
+	print("PLAYER TOP: ", top_clothe)
+	print("PLAYER BOTTOM: ", bottom_clothe)
+
 	if Global.health <= 0.0:
 		Global.health = 100.0
 
@@ -136,29 +147,16 @@ func _ready() -> void:
 	Global.is_alive = true
 	dying = false
 
-	# Clothing timers
 	top_cloth_timer = top_cloth_time
 	bottom_clothe_timer = bottom_clothe_time
 
-	# Character clothing
-	if gender == "male":
-		top_clothe = "blue_shirt_2"
-		bottom_clothe = "green_pants"
-
-	elif gender == "female":
-		top_clothe = "blue_corset_2"
-		bottom_clothe = "skirt"
-
-	# Camera
 	if camera:
 		camera_base_offset = camera.offset
 
-	# Save original sprite scales
 	skin_base_scale = skin.scale
 	top_base_scale = top.scale
 	bottom_base_scale = bottom.scale
 	hair_base_scale = hair.scale
-
 
 ######################
 # PHYSICS
@@ -183,6 +181,8 @@ func _physics_process(delta: float) -> void:
 	###############################
 	# CLOTHING SYSTEM
 	###############################
+	top_clothe = Global.top_cloth
+	bottom_clothe = Global.bottom_cloth
 
 	top_cloth_timer = max(
 		top_cloth_timer - delta,
@@ -430,15 +430,12 @@ func _physics_process(delta: float) -> void:
 		hair.speed_scale = 1.0
 
 		if play_jump:
-
 			skin.play(skin_anim("jump"))
 			top.play(top_anim("jump"))
 			bottom.play(bottom_anim("jump"))
 			hair.play(hair_anim("jump"))
 			sword.play(sword_anim("jump"))
-
 		else:
-
 			skin.play(skin_anim("fall"))
 			top.play(top_anim("fall"))
 			bottom.play(bottom_anim("fall"))

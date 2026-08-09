@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://8pw6lv435nys"]
+
+[ext_resource type="PackedScene" uid="uid://boyfdb35mrp71" path="res://clothe_item_base.tscn" id="1_m8qy8"]
+[ext_resource type="Script" uid="uid://cajxgfak8dyve" path="res://Scripts/clothes/green_shirt_2.gd" id="2_laihy"]
+
+[node name="clothe" unique_id=2112460708 instance=ExtResource("1_m8qy8")]
+script = ExtResource("2_laihy")
