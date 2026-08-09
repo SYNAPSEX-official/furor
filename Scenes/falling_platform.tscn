@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d3egd2eenua6u"]
+[gd_scene load_steps=0 format=3 uid="uid://d3egd2eenua6u"]
 
 [ext_resource type="Script" uid="uid://drqr5xye4x5o4" path="res://Scripts/falling_platform.gd" id="1_0msxf"]
 [ext_resource type="Texture2D" uid="uid://b40xhujqiix2l" path="res://Assests/falling_platform_1.png" id="1_1j650"]
