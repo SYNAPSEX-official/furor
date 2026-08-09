@@ -15,6 +15,8 @@ extends CharacterBody2D
 )
 
 @onready var camera: Camera2D = $"../Camera2D"
+@onready var noise_emitter: PhantomCameraNoiseEmitter2D = $PhantomCamera2D/PhantomCameraNoiseEmitter2D
+
 
 @onready var skin: AnimatedSprite2D = $skin
 @onready var hair: AnimatedSprite2D = $hair
@@ -80,11 +82,6 @@ var health: float = 100.0
 var attack: float = 0.0
 var previous_health: float = 100.0
 
-# Invulnerability after taking a hit — prevents a continuous damage
-# source (lava, a touching enemy, etc.) from retriggering on_damaged()
-# every single frame, which would otherwise stack hitstop calls and
-# could stall the game in near-permanent slow motion. Also just gives
-# the player a fair breath to react instead of chain-dying instantly.
 var invulnerable: bool = false
 var invulnerability_time: float = 0.6
 var invulnerability_timer: float = 0.0
@@ -147,10 +144,10 @@ var hair_base_scale: Vector2
 # CAMERA SHAKE
 ######################
 
-var trauma: float = 0.0
-var trauma_decay: float = 2.2
-
-const MAX_SHAKE_OFFSET: float = 14.0
+# Base amplitude to scale by intensity before each emit() call — lets
+# a hard landing shake harder than a light tap without needing separate
+# noise resources for every trigger. Tune to match your resource's feel.
+const BASE_SHAKE_AMPLITUDE: float = 14.0
 
 var camera_base_offset: Vector2 = Vector2.ZERO
 
@@ -283,7 +280,6 @@ func _physics_process(delta: float) -> void:
 
 	# Death from zero health
 	if health <= 0.0:
-		Global.rage = 0
 		die()
 		return
 
@@ -346,6 +342,7 @@ func _physics_process(delta: float) -> void:
 	# giving a short hop instead of the full arc.
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
 		velocity.y *= JUMP_CUT_MULTIPLIER
+		shake(10.0)
 
 
 	###############################
@@ -500,32 +497,6 @@ func _physics_process(delta: float) -> void:
 		hair.play(hair_anim("idle"))
 
 
-	###############################
-	# CAMERA SHAKE
-	###############################
-
-	if trauma > 0.0:
-
-		trauma = max(
-			trauma - trauma_decay * delta,
-			0.0
-		)
-
-		var shake_power: float = trauma * trauma
-
-		var shake_offset: Vector2 = Vector2(
-			randf_range(-1.0, 1.0),
-			randf_range(-1.0, 1.0)
-		) * MAX_SHAKE_OFFSET * shake_power
-
-		if camera:
-			camera.offset = camera_base_offset + shake_offset
-
-	elif camera:
-
-		camera.offset = camera_base_offset
-
-
 ###############################
 # SQUASH & STRETCH
 ###############################
@@ -645,22 +616,24 @@ func on_landed() -> void:
 	)
 
 	if impact > 0.15:
-		add_trauma(
-			impact * 0.6
-		)
+		shake(impact)
 
 
 ###############################
 # CAMERA SHAKE
 ###############################
 
-func add_trauma(amount: float) -> void:
+func shake(intensity: float = 1.0) -> void:
+	if noise_emitter == null:
+		return
 
-	trauma = clamp(
-		trauma + amount,
-		0.0,
-		1.0
-	)
+	if noise_emitter.noise == null:
+		return
+
+	var amplitude: float = BASE_SHAKE_AMPLITUDE * intensity
+
+	noise_emitter.noise.set_amplitude(amplitude)
+	noise_emitter.emit()
 
 
 ###############################
@@ -668,8 +641,7 @@ func add_trauma(amount: float) -> void:
 ###############################
 
 func on_damaged() -> void:
-
-	add_trauma(0.35)
+	shake(0.5)
 
 	if flash_tween and flash_tween.is_valid():
 		flash_tween.kill()
@@ -755,13 +727,15 @@ func hitstop(duration: float) -> void:
 ###############################
 
 func die() -> void:
-	Global.rage = 0
+
 	# Prevent death from starting twice
 	if dying:
 		return
 
 	dying = true
 	Global.is_alive = false
+
+	shake(1.0)
 
 	# Restore normal time scale
 	Engine.time_scale = 1.0
@@ -845,4 +819,3 @@ func _on_death_area_body_entered(body: Node2D) -> void:
 		return
 	print("PLAYER ENTERED DEATH AREA")
 	call_deferred("die")
-	Global.rage = 0

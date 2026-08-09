@@ -27,9 +27,17 @@
 [ext_resource type="Texture2D" uid="uid://dw43oyuwv10ke" path="res://Assests/GandalfHardcore Character Asset Pack/Female Clothing/Purple Corset v2.png" id="25_7ldla"]
 [ext_resource type="Texture2D" uid="uid://w1av7gtdi1oc" path="res://Assests/GandalfHardcore Character Asset Pack/Male Clothing/Purple Shirt v2.png" id="26_r7t2e"]
 [ext_resource type="Texture2D" uid="uid://fe8p5rmrniou" path="res://Assests/GandalfHardcore Character Asset Pack/Female Hair/Female Hair1.png" id="27_vfarp"]
+[ext_resource type="Script" uid="uid://bhd4nuiu23e7l" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_noise_emitter_2d.gd" id="28_83xs0"]
+[ext_resource type="Script" uid="uid://dimvdouy8g0sv" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" id="29_ypfnu"]
 
 [sub_resource type="Resource" id="Resource_x3wgy"]
 script = ExtResource("4_fkybt")
+
+[sub_resource type="Resource" id="Resource_sbxph"]
+script = ExtResource("29_ypfnu")
+amplitude = 10.025
+frequency = 0.888
+metadata/_custom_type_script = "uid://dimvdouy8g0sv"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rie18"]
 atlas = ExtResource("4_0gysh")
@@ -8403,6 +8411,13 @@ follow_damping_value = Vector2(0.5, 0.5)
 dead_zone_width = 0.25
 dead_zone_height = 0.25
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="PhantomCameraNoiseEmitter2D" type="Node2D" parent="PhantomCamera2D" unique_id=49931876]
+scale = Vector2(2, 2)
+script = ExtResource("28_83xs0")
+noise = SubResource("Resource_sbxph")
+decay_time = 1e-05
+metadata/_custom_type_script = "uid://bhd4nuiu23e7l"
 
 [node name="skin" type="AnimatedSprite2D" parent="." unique_id=1134266339]
 position = Vector2(-1.9999971, -25)
