@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://vp088nvk7ur8"]
+[gd_scene load_steps=0 format=3 uid="uid://vp088nvk7ur8"]
 
 [ext_resource type="Script" uid="uid://b0hf7o5j3w3nf" path="res://Scripts/moving_platform.gd" id="1_anqd2"]
 [ext_resource type="Texture2D" uid="uid://cix71wmk8y3hc" path="res://Assests/pixil-frame-0.png" id="1_vvyo4"]
