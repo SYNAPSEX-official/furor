@@ -72,9 +72,6 @@ func take_damage() -> void:
 
 	rage += damage_taken * rage_multi
 
-	print("GLOBAL DAMAGE: ", damage_multiplier)
-	print("GLOBAL HEALTH: ", health)
-
 # =========================================================
 # HEALING
 # =========================================================

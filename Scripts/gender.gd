@@ -28,4 +28,4 @@ func _on_light_pressed() -> void:
 
 func _on_pale_pressed() -> void:
 	Global.skin = "1"
-	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/level_5.tscn")

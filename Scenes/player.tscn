@@ -8391,7 +8391,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbxph"]
 radius = 14.0
-height = 96.0
+height = 90.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfc28"]
 atlas = ExtResource("27_vfarp")
@@ -11192,6 +11192,7 @@ autoplay = "male_idle"
 frame_progress = 0.34498465
 
 [node name="attack_area" type="Area2D" parent="." unique_id=354937813]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area" unique_id=211496414]
 position = Vector2(-14.5, -19)

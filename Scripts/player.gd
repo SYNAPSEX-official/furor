@@ -163,21 +163,14 @@ func _ready() -> void:
 	else:
 		hair_style = "1"
 
-	print("GENDER: ", Global.gender)
-	print("TOP: ", Global.top_cloth)
-	print("BOTTOM: ", Global.bottom_cloth)
-
 	gender = Global.gender
 	skin_type = str(Global.skin)
 
 	top_clothe = Global.top_cloth
 	bottom_clothe = Global.bottom_cloth
-
-	print("PLAYER TOP: ", top_clothe)
-	print("PLAYER BOTTOM: ", bottom_clothe)
-
+	
 	if Global.health <= 0.0:
-		Global.health = 100.0
+		Global.health = 20.0
 
 	health = Global.health
 	previous_health = health
@@ -916,9 +909,6 @@ func die() -> void:
 
 func respawn() -> void:
 
-	print("RESPAWNING PLAYER")
-
-
 	###############################
 	# MOVE TO SPAWN POINT
 	###############################
@@ -952,17 +942,17 @@ func respawn() -> void:
 	# RESET HEALTH
 	###############################
 
-	Global.health = 100.0
+	Global.health = 20.0
 
-	health = 100.0
+	health = 20.0
 
 	# VERY IMPORTANT:
 	# Keep previous_health synchronized with
 	# the new respawn health.
 
-	previous_health = 100.0
+	previous_health = 20.0
 
-	health_bar.value = 500.0
+	health_bar.value = 100
 
 
 	###############################
@@ -1045,10 +1035,6 @@ func respawn() -> void:
 
 	dying = false
 	Global.is_alive = true
-
-	print("PLAYER HEALTH AFTER RESPAWN: ", Global.health)
-	print("PLAYER RESPAWNED")
-
 
 ###############################
 # ANIMATION NAMES
@@ -1168,17 +1154,11 @@ func attack_player() -> void:
 
 	attacking = false
 
-	print("Attack finished")
-
 
 ###############################
 # ATTACK AREA
 ###############################
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-
 	if body.name.begins_with("enemy") and attacking == true:
-
 		body.take_damage(attack_damage)
-
-		print(attack_damage)

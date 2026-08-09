@@ -1973,7 +1973,7 @@ shape = SubResource("WorldBoundaryShape2D_626v6")
 z_index = -10
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.8, 0.8)
-scroll_offset = Vector2(-228, -568)
+scroll_offset = Vector2(-228, -451)
 repeat_size = Vector2(1536, 0)
 
 [node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D5" unique_id=441047121]
@@ -1992,7 +1992,7 @@ texture = ExtResource("1_aragq")
 z_index = -10
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(1.3, 1.3)
-scroll_offset = Vector2(-228, -568)
+scroll_offset = Vector2(-228, -451)
 repeat_size = Vector2(1536, 0)
 
 [node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D4" unique_id=869148910]
@@ -2011,7 +2011,7 @@ texture = ExtResource("2_5h5s4")
 z_index = -10
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(1.5, 1.5)
-scroll_offset = Vector2(-228, -568)
+scroll_offset = Vector2(-228, -451)
 repeat_size = Vector2(1536, 0)
 
 [node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D" unique_id=1687710222]
@@ -2030,7 +2030,7 @@ texture = ExtResource("3_ofv14")
 z_index = -10
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(1.8, 1.8)
-scroll_offset = Vector2(-228, -568)
+scroll_offset = Vector2(-228, -451)
 repeat_size = Vector2(1536, 0)
 
 [node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D2" unique_id=526351114]
@@ -2049,7 +2049,7 @@ texture = ExtResource("4_16a8q")
 z_index = -10
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(2, 2)
-scroll_offset = Vector2(-228, -568)
+scroll_offset = Vector2(-228, -451)
 repeat_size = Vector2(1536, 0)
 
 [node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D3" unique_id=345314646]
