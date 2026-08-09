@@ -16,14 +16,15 @@ var bottom_cloth: String = "green_pants"
 # HEALTH
 # =========================================================
 
-var health: float = 20.0
+const MAX_HEALTH: float = 20.0
+
+var health: float = MAX_HEALTH
 var attack: float = 2.0
 var damage_multiplier: float = 1.0
 var damage_taken: float = 0.0
 var rage: float = 0.0
 var rage_multi: float = 1.0
 var healing: bool = false
-
 
 # =========================================================
 # READY
@@ -32,7 +33,6 @@ var healing: bool = false
 func _ready() -> void:
 	update_clothes()
 
-
 # =========================================================
 # GENDER
 # =========================================================
@@ -40,7 +40,6 @@ func _ready() -> void:
 func set_gender(new_gender: String) -> void:
 	gender = new_gender
 	update_clothes()
-
 
 # =========================================================
 # CLOTHING
@@ -55,6 +54,7 @@ func update_clothes() -> void:
 		"male":
 			top_cloth = "blue_shirt_2"
 			bottom_cloth = "green_pants"
+
 		_:
 			gender = "male"
 			top_cloth = "blue_shirt_2"
@@ -66,21 +66,30 @@ func update_clothes() -> void:
 
 func take_damage() -> void:
 	damage_taken = damage_multiplier
+
 	health -= damage_multiplier
+	health = max(health, 0.0)
+
 	rage += damage_taken * rage_multi
 
+	print("GLOBAL DAMAGE: ", damage_multiplier)
+	print("GLOBAL HEALTH: ", health)
 
 # =========================================================
 # HEALING
 # =========================================================
 
 func _physics_process(_delta: float) -> void:
-	if health < 20.0 and not healing:
+
+	if health < MAX_HEALTH and not healing:
+
 		healing = true
 
 		await get_tree().create_timer(4.0).timeout
 
-		health += 1.0
-		health = min(health, 20.0)
+		# Make sure we haven't died while waiting
+		if health > 0.0:
+			health += 1.0
+			health = min(health, MAX_HEALTH)
 
 		healing = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://sxmvkq3hxwby"]
+[gd_scene format=3 uid="uid://sxmvkq3hxwby"]
 
 [ext_resource type="Texture2D" uid="uid://cj8u6n4i8qi7a" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 5.png" id="1_aragq"]
 [ext_resource type="PackedScene" uid="uid://c1cqq3ki5tbsb" path="res://Scenes/player.tscn" id="1_yqaxe"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b3v8vkld6ioih" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 2.png" id="4_16a8q"]
 [ext_resource type="PackedScene" uid="uid://c15rie08f17w2" path="res://UI/HUD.tscn" id="5_a617u"]
 [ext_resource type="Texture2D" uid="uid://d0pu5dksstilp" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 1.png" id="6_a617u"]
+[ext_resource type="Texture2D" uid="uid://bhl1vagwh1c27" path="res://Assests/GandalfHardcore FREE Platformer Assets/Animated Sprites/GandalfHardcore Water Tiles sheet.png" id="9_5h5s4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smkg2"]
 texture = ExtResource("2_x24lp")
@@ -1906,130 +1907,161 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_smkg2")
 sources/1 = SubResource("TileSetAtlasSource_626v6")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ofv14"]
+texture = ExtResource("9_5h5s4")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 5
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/animation_frame_3/duration = 0.2
+0:0/animation_frame_4/duration = 0.2
+0:0/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_aragq"]
+resource_local_to_scene = true
+tile_size = Vector2i(32, 32)
+sources/2 = SubResource("TileSetAtlasSource_ofv14")
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_626v6"]
 normal = Vector2(-0.0064514787, -0.99997926)
 distance = 60.358715
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D2" type="Node2D" unique_id=106771185]
 
-[node name="paralax backgrounds" type="Node" parent="."]
-
-[node name="Parallax2D5" type="Parallax2D" parent="paralax backgrounds"]
-z_index = -1
-scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(0.8, 0.8)
-scroll_offset = Vector2(0, -826)
-repeat_size = Vector2(1536, 0)
-
-[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D5"]
-position = Vector2(-130, 66.75002)
-scale = Vector2(1.5, 1.8684971)
-texture = ExtResource("1_aragq")
-
-[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D5"]
-position = Vector2(1406, 66.08333)
-scale = Vector2(1.5, 1.8646433)
-texture = ExtResource("1_aragq")
-
-[node name="Parallax2D4" type="Parallax2D" parent="paralax backgrounds"]
-z_index = -1
-scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(1.3, 1.3)
-scroll_offset = Vector2(0, -826)
-repeat_size = Vector2(1536, 0)
-
-[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D4"]
-position = Vector2(-130, 3)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_5h5s4")
-
-[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D4"]
-position = Vector2(1406, 3)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_5h5s4")
-
-[node name="Parallax2D" type="Parallax2D" parent="paralax backgrounds"]
-z_index = -1
-scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(1.5, 1.5)
-scroll_offset = Vector2(-228, -826)
-repeat_size = Vector2(1536, 0)
-
-[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D"]
-position = Vector2(-130, 3)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("3_ofv14")
-
-[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D"]
-position = Vector2(1406, 3)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("3_ofv14")
-
-[node name="Parallax2D2" type="Parallax2D" parent="paralax backgrounds"]
-z_index = -1
-scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(1.8, 1.8)
-scroll_offset = Vector2(-228, -826)
-repeat_size = Vector2(1536, 0)
-
-[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D2"]
-position = Vector2(-108.66669, 3)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_16a8q")
-
-[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D2"]
-position = Vector2(1406, 3)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_16a8q")
-
-[node name="Parallax2D3" type="Parallax2D" parent="paralax backgrounds"]
-z_index = -1
-scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(2, 2)
-scroll_offset = Vector2(-228, -826)
-repeat_size = Vector2(1536, 0)
-
-[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D3"]
-position = Vector2(-110, 3)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("6_a617u")
-
-[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D3"]
-position = Vector2(1426.0005, 3)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("6_a617u")
-
-[node name="Player" parent="." instance=ExtResource("1_yqaxe")]
+[node name="Player" parent="." unique_id=1792132540 instance=ExtResource("1_yqaxe")]
 position = Vector2(-42, -7)
 
-[node name="Node" type="Node" parent="."]
+[node name="Node" type="Node" parent="." unique_id=375409144]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Node"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Node" unique_id=1666579760]
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_sbxph")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="water" type="TileMapLayer" parent="Node" unique_id=182845115]
+position = Vector2(370, 2)
+tile_set = SubResource("TileSet_aragq")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=514753804]
 physics_interpolation_mode = 1
 top_level = true
 position = Vector2(-42, -7)
 limit_enabled = false
 position_smoothing_speed = 20.0
 
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=733223483]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("3_x24lp")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="CanvasLayer" parent="Camera2D" instance=ExtResource("5_a617u")]
+[node name="CanvasLayer" parent="Camera2D" unique_id=1625448703 instance=ExtResource("5_a617u")]
 
-[node name="enemies" type="Node" parent="."]
+[node name="enemies" type="Node" parent="." unique_id=314555735]
 
-[node name="death area" type="Area2D" parent="."]
+[node name="death area" type="Area2D" parent="." unique_id=941955452]
 position = Vector2(-367, 801)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="death area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death area" unique_id=1579172517]
 position = Vector2(13, -183)
 shape = SubResource("WorldBoundaryShape2D_626v6")
+
+[node name="paralax backgrounds" type="Node" parent="." unique_id=28208915]
+
+[node name="Parallax2D5" type="Parallax2D" parent="paralax backgrounds" unique_id=2017198413]
+z_index = -10
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(-228, -568)
+repeat_size = Vector2(1536, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D5" unique_id=441047121]
+z_index = -10
+position = Vector2(-130, 66.75002)
+scale = Vector2(1.5, 1.8684971)
+texture = ExtResource("1_aragq")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D5" unique_id=44175708]
+z_index = -10
+position = Vector2(1406, 66.08333)
+scale = Vector2(1.5, 1.8646433)
+texture = ExtResource("1_aragq")
+
+[node name="Parallax2D4" type="Parallax2D" parent="paralax backgrounds" unique_id=100485285]
+z_index = -10
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(1.3, 1.3)
+scroll_offset = Vector2(-228, -568)
+repeat_size = Vector2(1536, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D4" unique_id=869148910]
+z_index = -10
+position = Vector2(-130, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_5h5s4")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D4" unique_id=1242155346]
+z_index = -10
+position = Vector2(1406, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_5h5s4")
+
+[node name="Parallax2D" type="Parallax2D" parent="paralax backgrounds" unique_id=1803602377]
+z_index = -10
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(1.5, 1.5)
+scroll_offset = Vector2(-228, -568)
+repeat_size = Vector2(1536, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D" unique_id=1687710222]
+z_index = -10
+position = Vector2(-130, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_ofv14")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D" unique_id=2046712643]
+z_index = -10
+position = Vector2(1406, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_ofv14")
+
+[node name="Parallax2D2" type="Parallax2D" parent="paralax backgrounds" unique_id=1157835650]
+z_index = -10
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(1.8, 1.8)
+scroll_offset = Vector2(-228, -568)
+repeat_size = Vector2(1536, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D2" unique_id=526351114]
+z_index = -10
+position = Vector2(-131.33337, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_16a8q")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D2" unique_id=1101313581]
+z_index = -10
+position = Vector2(1404.6672, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_16a8q")
+
+[node name="Parallax2D3" type="Parallax2D" parent="paralax backgrounds" unique_id=317762137]
+z_index = -10
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(2, 2)
+scroll_offset = Vector2(-228, -568)
+repeat_size = Vector2(1536, 0)
+
+[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="paralax backgrounds/Parallax2D3" unique_id=345314646]
+z_index = -10
+position = Vector2(-110, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_a617u")
+
+[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="paralax backgrounds/Parallax2D3" unique_id=1358975710]
+z_index = -10
+position = Vector2(1426.0005, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_a617u")
 
 [connection signal="body_entered" from="death area" to="Player" method="_on_death_area_body_entered"]
