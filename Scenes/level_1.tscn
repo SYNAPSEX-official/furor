@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d0pu5dksstilp" path="res://Assests/GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 1.png" id="11_oovug"]
 [ext_resource type="Texture2D" uid="uid://fkf2fq3o54ht" path="res://Assests/GandalfHardcore FREE Platformer Assets/Animated Sprites/Campfire sheet.png" id="12_uy8f0"]
 [ext_resource type="PackedScene" uid="uid://5ytohtid5fnn" path="res://Scenes/clothe_items/skirt.tscn" id="14_6ioyp"]
+[ext_resource type="PackedScene" uid="uid://8pw6lv435nys" path="res://Scenes/clothe_items/green_shirt_2.tscn" id="15_oovug"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smkg2"]
 texture = ExtResource("2_j7kpp")
@@ -2391,7 +2392,10 @@ sprite_frames = SubResource("SpriteFrames_6r07y")
 autoplay = "default"
 
 [node name="clothe" parent="." unique_id=2112460708 instance=ExtResource("14_6ioyp")]
-position = Vector2(506, -98)
+position = Vector2(671, -683)
+
+[node name="clothe2" parent="." unique_id=420081040 instance=ExtResource("15_oovug")]
+position = Vector2(990, -213)
 
 [connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="death area" to="Player" method="_on_death_area_body_entered"]

@@ -1,159 +1,126 @@
 extends CharacterBody2D
 
-const SPEED: float = 150.0
+const SPEED: float = 100.0
 const FLOAT_SPEED: float = 1.5
 const FLOAT_HEIGHT: float = 35.0
 
-var player: Node2D = null
-var health: float = 5.0
+const FIRE_COOLDOWN: float = 1.5
+const FIRE_RANGE: float = 500.0
+
+var health: float = 100.0
 var is_hurt: bool = false
+
+var player: Node2D = null
+
 var start_y: float = 0.0
+var fire_timer: float = 0.0
+var firing: bool = false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready() -> void:
 	start_y = global_position.y
-
-	print("========== BOSS READY ==========")
-	print("[BOSS] Health: ", health)
-	print("[BOSS] Sprite found: ", sprite)
-	print("[BOSS] Ready!")
-	print("================================")
+	fire_timer = FIRE_COOLDOWN
+	sprite.play("idle")
 
 
 func _physics_process(delta: float) -> void:
+	var time_now: float = Time.get_ticks_msec() / 1000.0
 
-	# =========================
-	# FLOATING
-	# =========================
-
-	var time: float = Time.get_ticks_msec() / 1000.0
-
-	var float_y: float = start_y + (
-		sin(time * FLOAT_SPEED) * FLOAT_HEIGHT
+	global_position.y = start_y + (
+		sin(time_now * FLOAT_SPEED) * FLOAT_HEIGHT
 	)
 
-	global_position.y = float_y
-
-
-	# =========================
-	# CHASE PLAYER
-	# =========================
-
-	if player != null:
-
+	if player != null and not firing:
 		var distance_x: float = (
 			player.global_position.x
 			- global_position.x
 		)
 
 		var direction: float = sign(distance_x)
-
 		velocity.x = direction * SPEED
 
 	else:
-
 		velocity.x = 0.0
 
+	fire_timer -= delta
+
+	if fire_timer <= 0.0 and player != null and not firing:
+		var distance_to_player: float = (
+			global_position.distance_to(
+				player.global_position
+			)
+		)
+
+		if distance_to_player <= FIRE_RANGE:
+			fire()
 
 	move_and_slide()
 
 
-# =========================================================
-# PLAYER DETECTION
-# =========================================================
-
 func _on_detection_area_body_entered(body: Node2D) -> void:
-
-	print("[BOSS] Detection ENTERED: ", body.name)
-
 	if body.name == "Player":
-
 		player = body
-
-		print("[BOSS] ✅ PLAYER DETECTED")
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-
-	print("[BOSS] Detection EXITED: ", body.name)
-
 	if body == player:
-
 		player = null
 
-		print("[BOSS] ❌ PLAYER LEFT DETECTION")
 
-
-# =========================================================
-# BOSS ATTACKS PLAYER
-# =========================================================
-
-func _on_damage_area_body_entered(body: Node2D) -> void:
-
-	print("[BOSS] Damage Area touched: ", body.name)
-
-	if body.name == "Player":
-
-		print("[BOSS] ⚔️ BOSS HIT PLAYER")
-
-		Global.take_damage()
-
-		print("[BOSS] Global.take_damage() called")
-
-
-# =========================================================
-# BOSS TAKES DAMAGE
-# =========================================================
-
-func take_damage(damage: float) -> void:
-
-	print("")
-	print("================================")
-	print("💥 BOSS GOT HIT!")
-	print("================================")
-
-	print("[BOSS] Damage received: ", damage)
-	print("[BOSS] Health BEFORE: ", health)
-
-
-	# Don't allow multiple hits during flash
-	if is_hurt:
-
-		print("[BOSS] ⚠️ Already hurt!")
+func fire() -> void:
+	if firing or player == null:
 		return
 
+	firing = true
+	fire_timer = FIRE_COOLDOWN
+	velocity.x = 0.0
 
-	# =========================
-	# APPLY DAMAGE
-	# =========================
+	if player.global_position.x < global_position.x:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
 
-	health -= damage
+	sprite.play("fire")
 
-	print("[BOSS] Health AFTER: ", health)
+	await get_tree().create_timer(0.25).timeout
 
+	if player == null:
+		firing = false
+		sprite.play("idle")
+		return
 
-	is_hurt = true
+	var distance_to_player: float = (
+		global_position.distance_to(
+			player.global_position
+		)
+	)
 
+	if distance_to_player <= FIRE_RANGE:
+		Global.take_damage()
 
-	# =========================
-	# 🔴 RED FLASH
-	# =========================
+	await get_tree().create_timer(0.25).timeout
 
-	print("[BOSS] 🔴 SETTING SPRITE RED")
-
-	sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
-
-	print("[BOSS] Sprite modulate is now: ", sprite.modulate)
-
-
-	# =========================
-	# KNOCKBACK
-	# =========================
+	firing = false
 
 	if player != null:
+		sprite.play("idle")
 
+
+func _on_damage_area_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.take_damage()
+
+
+func take_damage(damage: float) -> void:
+	if is_hurt:
+		return
+
+	health -= damage
+	is_hurt = true
+
+	if player != null:
 		var knockback_direction: float = sign(
 			global_position.x
 			- player.global_position.x
@@ -161,45 +128,12 @@ func take_damage(damage: float) -> void:
 
 		velocity.x = knockback_direction * 150.0
 
-		print("[BOSS] 👊 Knockback applied")
+	modulate = Color(1.0, 0.3, 0.3)
 
+	await get_tree().create_timer(0.12).timeout
 
-	# =========================
-	# WAIT
-	# =========================
-
-	await get_tree().create_timer(0.15).timeout
-
-
-	# =========================
-	# RESTORE COLOR
-	# =========================
-
-	sprite.modulate = Color.WHITE
-
+	modulate = Color.WHITE
 	is_hurt = false
 
-	print("[BOSS] ⚪ Sprite restored")
-
-
-	# =========================
-	# DEATH
-	# =========================
-
 	if health <= 0.0:
-
-		print("")
-		print("💀💀💀 BOSS DEAD 💀💀💀")
-
-		sprite.modulate = Color(
-			1.0,
-			0.0,
-			0.0,
-			1.0
-		)
-
-		await get_tree().create_timer(0.15).timeout
-
-		print("[BOSS] 🗑️ Removing boss")
-
 		queue_free()

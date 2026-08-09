@@ -11170,7 +11170,7 @@ autoplay = "green_pants_idle"
 position = Vector2(-2.5, -26)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1wi4f")
-animation = &"purple_shirt_2_idle"
+animation = &"purple_corset_2_walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1789090631]
 position = Vector2(-1.5, 1)

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://2yx431ie1sfu" path="res://Scenes/spike_trap.tscn" id="4_wi344"]
 [ext_resource type="Texture2D" uid="uid://bhl1vagwh1c27" path="res://Assests/GandalfHardcore FREE Platformer Assets/Animated Sprites/GandalfHardcore Water Tiles sheet.png" id="5_dvrgg"]
 [ext_resource type="Texture2D" uid="uid://fkf2fq3o54ht" path="res://Assests/GandalfHardcore FREE Platformer Assets/Animated Sprites/Campfire sheet.png" id="5_f6i20"]
+[ext_resource type="PackedScene" uid="uid://8pw6lv435nys" path="res://Scenes/clothe_items/green_shirt_2.tscn" id="8_3ntyy"]
+[ext_resource type="PackedScene" uid="uid://5ytohtid5fnn" path="res://Scenes/clothe_items/skirt.tscn" id="9_7huqf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk15n"]
 texture = ExtResource("5_dvrgg")
@@ -417,5 +419,17 @@ shape = SubResource("RectangleShape2D_1wi4f")
 
 [node name="moving_platform" parent="." index="8" unique_id=1929305318 instance=ExtResource("3_kdkq3")]
 position = Vector2(252, 152)
+
+[node name="clothe" parent="." index="9" unique_id=2112460708 instance=ExtResource("8_3ntyy")]
+position = Vector2(3329, -226)
+
+[node name="clothe2" parent="." index="10" unique_id=1993645408 instance=ExtResource("9_7huqf")]
+position = Vector2(2536, -212)
+
+[node name="clothe3" parent="." index="11" unique_id=317931205 instance=ExtResource("8_3ntyy")]
+position = Vector2(2108, -198)
+
+[node name="clothe4" parent="." index="12" unique_id=1562824654 instance=ExtResource("9_7huqf")]
+position = Vector2(2933, -222)
 
 [connection signal="body_entered" from="level 5" to="." method="_on_level_5_body_entered"]
