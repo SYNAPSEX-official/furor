@@ -95,7 +95,7 @@ radius = 54.00333
 [sub_resource type="CircleShape2D" id="CircleShape2D_287tu"]
 radius = 8.809086
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1060650513]
+[node name="enemy" type="CharacterBody2D" unique_id=1060650513]
 scale = Vector2(5, 5)
 script = ExtResource("1_287tu")
 

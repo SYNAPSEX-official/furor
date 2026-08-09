@@ -58,10 +58,7 @@ var coyote_timer: float = 0.0
 var jump_buffer_time: float = 0.1
 var jump_buffer_timer: float = 0.0
 
-
-######################
 # PLAYER CUSTOMIZATION
-######################
 
 var gender: String = Global.gender
 var skin_type: String = str(Global.skin)
@@ -74,10 +71,7 @@ var socks: String = ""
 var shoes: String = ""
 
 
-######################
 # HEALTH SYSTEM
-######################
-
 var health: float = 100.0
 var attack: float = 0.0
 var previous_health: float = 100.0
@@ -87,10 +81,7 @@ var invulnerability_time: float = 0.6
 var invulnerability_timer: float = 0.0
 
 
-######################
 # CLOTHING SYSTEM
-######################
-
 var top_cloth_time: float = 20.0
 var top_cloth_timer: float = 0.0
 
@@ -101,78 +92,47 @@ var top_damage_multi: bool = false
 var bottom_damage_multi: bool = false
 
 
-######################
 # DEATH
-######################
-
 var dying: bool = false
 
-
-######################
 # POINTS
-######################
-
 var rage: float = 0.0
 
-
-######################
 # JUICE VARIABLES
-######################
-
 var was_on_floor: bool = true
-
 var last_air_anim_was_jump: bool = true
 
 # Fall tracking
 var apex_y: float = 0.0
 var was_airborne: bool = false
 
-
-######################
 # SQUASH / STRETCH
-######################
 
 var squash_tween: Tween
-
 var skin_base_scale: Vector2
 var top_base_scale: Vector2
 var bottom_base_scale: Vector2
 var hair_base_scale: Vector2
 
 
-######################
 # CAMERA SHAKE
-######################
-
-# Base amplitude to scale by intensity before each emit() call — lets
-# a hard landing shake harder than a light tap without needing separate
-# noise resources for every trigger. Tune to match your resource's feel.
-const BASE_SHAKE_AMPLITUDE: float = 14.0
-
+const BASE_SHAKE_AMPLITUDE: float = 30.0
+const BASE_SHAKE_FREQUENCY: float = 28.0
+const FREQUENCY_PER_INTENSITY: float = 10.0
+const MIN_SHAKE_AXIS_MULTIPLIER: float = 0.35
 var camera_base_offset: Vector2 = Vector2.ZERO
 
-
-######################
 # HIT FLASH
-######################
-
 var flash_tween: Tween
-
-
-######################
 # READY
-######################
 
 func _ready() -> void:
-	# Reset a dead/invalid global health value when spawning.
-	# This prevents a new level from instantly killing the player.
 	if Global.health <= 0.0:
 		Global.health = 100.0
 
 	health = Global.health
 	previous_health = health
 
-	# Make sure the player is alive when entering a new level.
 	Global.is_alive = true
 	dying = false
 
@@ -192,8 +152,6 @@ func _ready() -> void:
 	# Camera
 	if camera:
 		camera_base_offset = camera.offset
-		camera.position_smoothing_enabled = true
-		camera.position_smoothing_speed = 8.0
 
 	# Save original sprite scales
 	skin_base_scale = skin.scale
@@ -342,7 +300,7 @@ func _physics_process(delta: float) -> void:
 	# giving a short hop instead of the full arc.
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
 		velocity.y *= JUMP_CUT_MULTIPLIER
-		shake(10.0)
+		shake(0.3)
 
 
 	###############################
@@ -616,32 +574,39 @@ func on_landed() -> void:
 	)
 
 	if impact > 0.15:
-		shake(impact)
+		shake(impact, Vector2.DOWN)
 
 
 ###############################
 # CAMERA SHAKE
 ###############################
-
-func shake(intensity: float = 1.0) -> void:
-	if noise_emitter == null:
+func shake(intensity: float = 1.0, direction: Vector2 = Vector2.ZERO) -> void:
+	if noise_emitter == null or noise_emitter.noise == null:
 		return
 
-	if noise_emitter.noise == null:
-		return
+	var noise: PhantomCameraNoise2D = noise_emitter.noise
 
-	var amplitude: float = BASE_SHAKE_AMPLITUDE * intensity
+	noise.set_amplitude(BASE_SHAKE_AMPLITUDE * intensity)
+	noise.set_frequency(BASE_SHAKE_FREQUENCY + intensity * FREQUENCY_PER_INTENSITY)
 
-	noise_emitter.noise.set_amplitude(amplitude)
+	# Directional weighting - shake mostly along the impact axis while
+	# keeping a bit of jitter on the perpendicular axis for juice.
+	if direction == Vector2.ZERO:
+		noise.set_positional_multiplier_x(1.0)
+		noise.set_positional_multiplier_y(1.0)
+	else:
+		var d: Vector2 = direction.normalized()
+		noise.set_positional_multiplier_x(lerpf(MIN_SHAKE_AXIS_MULTIPLIER, 1.0, absf(d.x)))
+		noise.set_positional_multiplier_y(lerpf(MIN_SHAKE_AXIS_MULTIPLIER, 1.0, absf(d.y)))
+
 	noise_emitter.emit()
-
 
 ###############################
 # HIT FLASH
 ###############################
 
 func on_damaged() -> void:
-	shake(0.5)
+	shake(0.6)
 
 	if flash_tween and flash_tween.is_valid():
 		flash_tween.kill()
